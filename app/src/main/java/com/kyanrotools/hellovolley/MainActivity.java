@@ -18,9 +18,11 @@ public class MainActivity extends Activity {
         TextView tv1 = (TextView) findViewById(R.id.textView);
         TextView tv2 = (TextView) findViewById(R.id.textView2);
         TextView tv3 = (TextView) findViewById(R.id.textView3);
+        TextView tv4 = (TextView) findViewById(R.id.textView);
+
 
         RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
-        
+
 
     }
 
