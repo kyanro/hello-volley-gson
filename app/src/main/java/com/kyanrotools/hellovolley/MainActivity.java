@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import model.BijinApiModel;
+import model.BijinResultGson;
 
 
 public class MainActivity extends Activity {
@@ -57,13 +58,20 @@ public class MainActivity extends Activity {
                     StringRequest request = new StringRequest(url, future, future);
                     queue.add(request);
 
+
                     String json = future.get();
+                    Log.d("my", json);
                     Gson gson = new Gson();
-                    Type type = new TypeToken<List<BijinApiModel.BijinModel>>() {}.getType();
-                    List<BijinApiModel.BijinModel> bijins = gson.fromJson(json, type);
+
+
+
+                    Type type = new TypeToken<List<BijinResultGson.BijinGson>>() {}.getType();
+                    List<BijinResultGson.BijinGson> bijins = gson.fromJson(json, type);
+
+
 
                     System.out.println("count:" + bijins.size());
-                    for (BijinApiModel.BijinModel bijin : bijins) {
+                    for (BijinResultGson.BijinGson bijin : bijins) {
                         System.out.println("category:" + bijin.category);
                     }
                 } catch (InterruptedException e) {
